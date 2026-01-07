@@ -4,9 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Nikita Naumov - Team Lead / Fullstack Developer</title>
-    <meta name="description"
-        content="Nikita Naumov - Team Lead / Fullstack Developer with 4 years of experience in building scalable web applications and leading development teams.">
+    <meta name="description" content="Team Lead / Fullstack Developer (React, Node.js, Oracle). 4+ years of experience. Based in Tashkent.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nikita Naumov - Team Lead / Fullstack Developer">
+    <meta property="og:description" content="Fullstack Developer (React, Node.js, Oracle). 4+ years experience. Open to work.">
+
+    <meta property="og:image" content="https://placehold.co/1200x630/4f46e5/ffffff/png?text=Nikita+Naumov%0ATeam+Lead+%2F+Fullstack">
+
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nikita Naumov - Team Lead / Fullstack Developer">
+    <meta name="twitter:description" content="Fullstack Developer (React, Node.js, Oracle). 4+ years experience.">
+    <meta name="twitter:image" content="https://placehold.co/1200x630/4f46e5/ffffff/png?text=Nikita+Naumov%0ATeam+Lead+%2F+Fullstack">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%234f46e5'/%3E%3Ctext x='50%25' y='50%25' dy='.35em' text-anchor='middle' font-family='sans-serif' font-size='20' font-weight='bold' fill='white'%3EN%3C/text%3E%3C/svg%3E">
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -48,7 +62,6 @@
     </script>
 
     <style>
-
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -66,7 +79,7 @@
             background-color: #475569;
         }
 
-       .bento-card {
+        .bento-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             will-change: transform, box-shadow;
         }
@@ -110,7 +123,8 @@
 
             body {
                 background: white !important;
-                color: black !important;
+                color: #334155 !important;
+
                 -webkit-print-color-adjust: exact;
             }
 
@@ -120,19 +134,55 @@
 
             .bento-card {
                 break-inside: avoid;
-                border: 1px solid #e2e8f0;
+                border: 1px solid #cbd5e1 !important;
+
                 box-shadow: none !important;
                 background: white !important;
-                color: black !important;
+                color: #334155 !important;
                 margin-bottom: 1rem;
+                border-radius: 12px !important;
+
             }
 
             .dark .bento-card {
                 background: white !important;
-                color: black !important;
-                border-color: #e2e8f0;
+                color: #334155 !important;
+                border-color: #cbd5e1 !important;
             }
 
+            h1,
+            h2,
+            h3,
+            h4 {
+                color: #0f172a !important;
+
+            }
+
+
+            p,
+            li,
+            span,
+            div {
+                color: #475569 !important;
+
+            }
+
+
+            a {
+                text-decoration: none !important;
+                color: #2563eb !important;
+
+            }
+
+            .bento-card span.bg-slate-800,
+            .bento-card span.bg-primary-50,
+            .bento-card span.bg-slate-100 {
+                background-color: transparent !important;
+                border: 1px solid #cbd5e1 !important;
+                color: #475569 !important;
+            }
+
+            /* Flatten grid */
             #app {
                 display: block !important;
                 max-width: 100% !important;
@@ -154,11 +204,6 @@
             p,
             li {
                 font-size: 10pt !important;
-            }
-
-            a {
-                text-decoration: none !important;
-                color: black !important;
             }
 
         }
@@ -219,8 +264,10 @@
             </div>
         </div>
 
+
         <div
             class="bento-card md:col-span-2 md:row-span-2 bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 flex flex-col justify-between relative overflow-hidden border border-slate-200 dark:border-slate-700/60 shadow-soft">
+
             <div
                 class="absolute top-0 right-0 w-48 h-48 bg-primary-500/5 dark:bg-primary-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none">
             </div>
@@ -239,10 +286,10 @@
                     </div>
                 </div>
 
+
                 <div
                     class="w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-slate-100 dark:border-slate-600 shrink-0 overflow-hidden bg-slate-100 dark:bg-slate-700">
-                    <img src="./avatar.jpg"
-                        alt="Avatar" class="w-full h-full object-cover">
+                    <img src="./avatar.jpg" alt="Avatar" class="w-full h-full object-cover">
                 </div>
             </div>
 
@@ -325,6 +372,7 @@
                     </div>
                 </div>
 
+
                 <div>
                     <div
                         class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3 border-b border-slate-700 pb-1">
@@ -344,20 +392,25 @@
             </div>
         </div>
 
+
         <div
             class="bento-card md:col-span-1 bg-white dark:bg-[#201c4f] text-slate-900 dark:text-white rounded-3xl p-6 flex flex-col justify-center border border-slate-200 dark:border-slate-700 shadow-soft relative overflow-hidden">
 
-            <div class="hidden dark:block absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-xl -mr-10 -mt-10 pointer-events-none"></div>
+            <div
+                class="hidden dark:block absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-xl -mr-10 -mt-10 pointer-events-none">
+            </div>
 
             <h3 class="text-lg font-semibold mb-4 opacity-95 relative z-10" data-i18n="langsTitle">Языки</h3>
             <div class="space-y-3 relative z-10">
                 <div class="flex justify-between items-center border-b border-slate-100 dark:border-white/10 pb-2">
                     <span data-i18n="langRu">Русский</span>
-                    <span class="text-xs font-semibold bg-slate-100 dark:bg-white/20 text-slate-600 dark:text-white px-2 py-0.5 rounded">Native</span>
+                    <span
+                        class="text-xs font-semibold bg-slate-100 dark:bg-white/20 text-slate-600 dark:text-white px-2 py-0.5 rounded">Native</span>
                 </div>
                 <div class="flex justify-between items-center">
                     <span data-i18n="langEn">Английский</span>
-                    <span class="text-xs font-semibold bg-slate-100 dark:bg-white/20 text-slate-600 dark:text-white px-2 py-0.5 rounded">B2</span>
+                    <span
+                        class="text-xs font-semibold bg-slate-100 dark:bg-white/20 text-slate-600 dark:text-white px-2 py-0.5 rounded">B2</span>
                 </div>
             </div>
         </div>
@@ -376,6 +429,7 @@
 
                 <div class="absolute left-[7px] top-3 bottom-3 w-0.5 bg-slate-200 dark:bg-slate-700 hidden md:block">
                 </div>
+
 
                 <div class="relative md:pl-10">
                     <div
@@ -419,9 +473,11 @@
                             <span data-i18n="inson2"><strong>Backend (Node.js & Java):</strong> Поддержка микросервисов.
                                 Взаимодействую с Java (Spring) бэкендом.</span>
                         </li>
+
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-                            <span data-i18n="insonFrontend"><strong>Frontend (React.js & Next.js):</strong> Поддержка и разработка веб приложений и интерфейсов.</span>
+                            <span data-i18n="insonFrontend"><strong>Frontend (React.js & Next.js):</strong> Поддержка и
+                                разработка веб приложений и интерфейсов.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
@@ -430,6 +486,7 @@
                         </li>
                     </ul>
                 </div>
+
 
                 <div class="relative md:pl-10">
                     <div
@@ -460,10 +517,12 @@
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-                            <span data-i18n="crowch3">Реализовал сложную логику взаимодействия юзера с интерфейсом (личный кабинет, создание опросников, тестов, постов и т.д).</span>
+                            <span data-i18n="crowch3">Реализовал сложную логику взаимодействия юзера с интерфейсом
+                                (личный кабинет, создание опросников, тестов, постов и т.д).</span>
                         </li>
                     </ul>
                 </div>
+
 
                 <div class="relative md:pl-10">
                     <div
@@ -486,7 +545,8 @@
                     <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
-                            <span data-i18n="alex1">Поддержка и создание высоконагруженных проектов на Vue.js и React.</span>
+                            <span data-i18n="alex1">Поддержка и создание высоконагруженных проектов на Vue.js и
+                                React.</span>
                         </li>
                         <li class="flex items-start gap-2">
                             <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
@@ -509,6 +569,7 @@
             </h3>
 
             <div class="space-y-4">
+
                 <div>
                     <div
                         class="text-[11px] font-bold text-primary-600 dark:text-primary-300 uppercase tracking-wider mb-1">
@@ -517,6 +578,7 @@
                     <div class="text-xs text-slate-500" data-i18n="courseHTML">Профессиональный Frontend-разработчик
                     </div>
                 </div>
+
 
                 <div>
                     <div
@@ -527,17 +589,26 @@
                         Node.js)</div>
                 </div>
 
+
+                <div>
+                    <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1">General</div>
+                    <div class="font-medium text-slate-900 dark:text-white text-sm" data-i18n="eduLevel">Среднее
+                        образование</div>
+                </div>
             </div>
 
             <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
-                <p class="text-xs text-slate-400 italic" data-i18n="motto">"В работе ценю честность, открытость, рост и отсутствие бюрократии"</p>
+                <p class="text-xs text-slate-400 italic" data-i18n="motto">"В работе ценю честность, открытость, рост и
+                    отсутствие бюрократии"</p>
             </div>
         </div>
 
     </div>
 
     <script>
+
         lucide.createIcons();
+
 
         const translations = {
             ru: {
@@ -554,7 +625,7 @@
                 langEn: "Английский",
                 expTitle: "Опыт работы",
 
-          
+
                 insonTitle: '<a href="https://insuranceon.uz/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Страховая компания INSON</a>',
                 dateInson: "Окт 2024 — Наст. время",
                 insonIntro: "Здесь я отвечаю за то, чтобы страховые продукты были доступны для оформления онлайн, а внутренние сервисы работали без сбоев.",
@@ -564,14 +635,13 @@
                 insonFrontend: "<strong>Frontend (React.js & Next.js):</strong> Поддержка и разработка веб приложений и интерфейсов.",
                 inson3: "<strong>Интеграции:</strong> MyGov, Road24, Банки, CLICK, Битрикс24, Билайн.",
 
-            
                 crowchTitle: '<a href="https://crowch.com/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Crowch</a>',
                 dateCrowch: "Окт 2024 — Сен 2025",
                 crowch1: "Много анимаций, графиков (Chart.js/D3), упор на SEO и оптимизацию перформанса.",
                 crowch2: "Запустил PWA на Nuxt.js + Pinia с нуля до продакшна.",
                 crowch3: "Реализовал сложную логику взаимодействия юзера с интерфейсом (личный кабинет, создание опросников, тестов, постов и т.д).",
 
-           
+
                 alexTitle: '<a href="https://alex-software.uz/ru/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">ALEX IT</a>',
                 dateAlex: "Май 2022 — Дек 2024",
                 alex1: "Поддержка и создание высоконагруженных проектов на Vue.js и React.",
@@ -673,6 +743,7 @@
 
         let currentLang = 'ru';
 
+
         function toggleLangMenu() {
             const menu = document.getElementById('lang-menu');
             const arrow = document.getElementById('lang-arrow');
@@ -688,6 +759,7 @@
                 arrow.style.transform = 'rotate(0deg)';
             }
         }
+
 
         window.onclick = function (event) {
             if (!event.target.closest('.relative')) {
@@ -705,7 +777,9 @@
             currentLang = lang;
             document.getElementById('lang-label').innerText = lang.toUpperCase();
 
+
             toggleLangMenu();
+
 
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(el => {
@@ -725,6 +799,7 @@
             });
         }
 
+
         function handlePrint() {
             const wasDark = document.documentElement.classList.contains('dark');
 
@@ -736,7 +811,6 @@
 
             setTimeout(() => {
                 window.print();
-
                 if (wasDark) {
                     document.documentElement.classList.add('dark');
                     document.getElementById('theme-icon').setAttribute('data-lucide', 'sun');
