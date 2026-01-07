@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikita Naumov - Team Lead / Fullstack Developer</title>
+    <meta name="description"
+        content="Nikita Naumov - Team Lead / Fullstack Developer with 4 years of experience in building scalable web applications and leading development teams.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f1f5f9',
+                            100: '#e2e8f0',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 4px 20px -2px rgba(99, 102, 241, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 20px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+
+       .bento-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.08);
+        }
+
+        .dark .bento-card:hover {
+            box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.4);
+        }
+
+        .dropdown-enter {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+        }
+
+        .dropdown-enter-active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        }
+
+        .dropdown-exit {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .dropdown-exit-active {
+            opacity: 0;
+            transform: scale(0.95) translateY(-10px);
+            transition: opacity 0.1s ease-in, transform 0.1s ease-in;
+        }
+
+        @media print {
+            @page {
+                margin: 0.8cm;
+                size: A4;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .bento-card {
+                break-inside: avoid;
+                border: 1px solid #e2e8f0;
+                box-shadow: none !important;
+                background: white !important;
+                color: black !important;
+                margin-bottom: 1rem;
+            }
+
+            .dark .bento-card {
+                background: white !important;
+                color: black !important;
+                border-color: #e2e8f0;
+            }
+
+            #app {
+                display: block !important;
+                max-width: 100% !important;
+            }
+
+            .md\:col-span-2,
+            .md\:col-span-1,
+            .md\:row-span-2,
+            .md\:col-span-3,
+            .md\:col-span-4 {
+                width: 100% !important;
+                grid-column: span 1 !important;
+            }
+
+            h1 {
+                font-size: 24pt !important;
+            }
+
+            p,
+            li {
+                font-size: 10pt !important;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: black !important;
+            }
+
+        }
+    </style>
+</head>
+
+<body
+    class="bg-gray-50 dark:bg-[#0f172a] text-slate-800 dark:text-slate-200 transition-colors duration-300 min-h-screen p-4 md:p-8 flex justify-center items-start font-sans">
+
+    <div id="app" class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-min pb-12">
+
+        <div class="md:col-span-4 flex justify-between items-center mb-2 no-print z-50">
+
+            <div class="relative">
+                <button onclick="toggleLangMenu()"
+                    class="bento-card bg-white dark:bg-slate-800 px-4 py-2 rounded-xl text-sm font-bold hover:bg-gray-50 dark:hover:bg-slate-700 transition flex items-center gap-2 border border-slate-200 dark:border-slate-700 shadow-sm group w-[100px] justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="languages" class="w-4 h-4 text-primary-500 dark:text-primary-300"></i>
+                        <span id="lang-label" class="text-primary-600 dark:text-primary-200">RU</span>
+                    </div>
+                    <i id="lang-arrow" data-lucide="chevron-down"
+                        class="w-3 h-3 text-slate-400 transition-transform duration-200"></i>
+                </button>
+
+                <div id="lang-menu"
+                    class="hidden absolute top-full left-0 mt-2 w-full bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden flex-col">
+                    <button onclick="setLang('ru')"
+                        class="px-4 py-2 text-left hover:bg-primary-50 dark:hover:bg-slate-700 text-sm font-medium transition flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 opacity-0"
+                            id="dot-ru"></span> RU
+                    </button>
+                    <button onclick="setLang('en')"
+                        class="px-4 py-2 text-left hover:bg-primary-50 dark:hover:bg-slate-700 text-sm font-medium transition flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 opacity-0"
+                            id="dot-en"></span> EN
+                    </button>
+                    <button onclick="setLang('uz')"
+                        class="px-4 py-2 text-left hover:bg-primary-50 dark:hover:bg-slate-700 text-sm font-medium transition flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-600 opacity-0"
+                            id="dot-uz"></span> UZ
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex gap-2">
+
+                <button onclick="toggleTheme()"
+                    class="bento-card bg-white dark:bg-slate-800 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-700 transition border border-slate-200 dark:border-slate-700 shadow-sm"
+                    title="Toggle Theme">
+                    <i id="theme-icon" data-lucide="moon" class="w-5 h-5 text-slate-600 dark:text-slate-300"></i>
+                </button>
+
+                <button onclick="handlePrint()"
+                    class="bento-card bg-primary-600 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-primary-700 transition flex items-center gap-2 shadow-lg shadow-primary-500/20 active:translate-y-0.5">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span data-i18n="downloadPdf">PDF</span>
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="bento-card md:col-span-2 md:row-span-2 bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 flex flex-col justify-between relative overflow-hidden border border-slate-200 dark:border-slate-700/60 shadow-soft">
+            <div
+                class="absolute top-0 right-0 w-48 h-48 bg-primary-500/5 dark:bg-primary-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none">
+            </div>
+
+            <div class="flex items-start justify-between gap-4 z-10">
+                <div class="flex-1">
+                    <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight"
+                        data-i18n="name">Наумов Никита Сергеевич</h1>
+                    <p class="text-primary-600 dark:text-primary-300 font-bold text-lg" data-i18n="role">Team Lead /
+                        Fullstack Developer</p>
+                    <div class="mt-3 flex flex-wrap gap-y-2 gap-x-4 text-sm text-slate-500 dark:text-slate-400">
+                        <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5"></i> <span
+                                data-i18n="location">Ташкент</span></span>
+                        <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i> <span
+                                data-i18n="expLabel">4 года опыта</span></span>
+                    </div>
+                </div>
+
+                <div
+                    class="w-24 h-24 md:w-28 md:h-28 rounded-2xl border border-slate-100 dark:border-slate-600 shrink-0 overflow-hidden bg-slate-100 dark:bg-slate-700">
+                    <img src="./avatar.jpg"
+                        alt="Avatar" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <div class="mt-6 md:mt-auto z-10">
+                <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-2">
+                    <i data-lucide="user" class="w-3 h-3"></i> <span data-i18n="aboutTitle">Обо мне</span>
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-[15px]" data-i18n="summary">
+                    Разработчик, который превращает сложные бизнес-процессы в удобные интерфейсы. Вырос из Frontend в
+                    уверенного Team Lead / Fullstack. Отвечаю за то, чтобы страховые продукты были доступны для
+                    оформления онлайн, а также развиваю внутренние сервисы компании. Могу не только сделать красивый
+                    интерфейс, но и спроектировать архитектуру энтерпрайз-уровня.
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="bento-card md:col-span-1 bg-white dark:bg-slate-800 rounded-3xl p-6 flex flex-col justify-center gap-4 border border-slate-200 dark:border-slate-700/60 shadow-soft">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-1" data-i18n="contactsTitle">Контакты
+            </h3>
+
+            <a href="https://t.me/naumovn808" target="_blank"
+                class="flex items-center gap-3 p-3 rounded-xl bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 hover:bg-primary-100 dark:hover:bg-primary-900/30 transition group border border-transparent hover:border-primary-200 dark:hover:border-primary-800">
+                <i data-lucide="send" class="w-5 h-5 group-hover:rotate-12 transition-transform"></i>
+                <span class="font-medium text-sm">@naumovn808</span>
+            </a>
+
+            <a href="mailto:naumovn808@gmail.com"
+                class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+                <span class="font-medium text-sm text-xs truncate">naumovn808@gmail.com</span>
+            </a>
+
+            <a href="tel:+998998077353"
+                class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-700/30 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/50 transition">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+                <span class="font-medium text-sm">+998 (99) 807-73-53</span>
+            </a>
+        </div>
+
+        <div
+            class="bento-card md:col-span-1 md:row-span-2 bg-slate-900 text-white rounded-3xl p-6 flex flex-col border border-slate-700 shadow-xl">
+            <h3 class="text-lg font-semibold mb-6 flex items-center gap-2 text-white">
+                <i data-lucide="cpu" class="w-5 h-5 text-primary-300"></i>
+                <span data-i18n="stackTitle">Стек технологий</span>
+            </h3>
+
+            <div class="space-y-6">
+
+                <div>
+                    <div
+                        class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3 border-b border-slate-700 pb-1">
+                        Frontend</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">React
+                            (RTK/Redux Toolkit)</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">Vue
+                            2/3 (Pinia/Vuex)</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">TypeScript</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">Next/Nuxt</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div
+                        class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3 border-b border-slate-700 pb-1">
+                        Backend</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">Node.js</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">NestJS</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-green-400 font-medium">Java
+                            (Spring)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div
+                        class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-3 border-b border-slate-700 pb-1">
+                        Database</div>
+                    <div class="flex flex-wrap gap-2">
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-orange-400 font-medium">Oracle
+                            (PL/SQL)</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">PostgreSQL</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">MongoDB</span>
+                        <span
+                            class="px-2.5 py-1 bg-slate-800 rounded-md text-sm border border-slate-700 text-slate-200">Redis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bento-card md:col-span-1 bg-white dark:bg-[#201c4f] text-slate-900 dark:text-white rounded-3xl p-6 flex flex-col justify-center border border-slate-200 dark:border-slate-700 shadow-soft relative overflow-hidden">
+
+            <div class="hidden dark:block absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full blur-xl -mr-10 -mt-10 pointer-events-none"></div>
+
+            <h3 class="text-lg font-semibold mb-4 opacity-95 relative z-10" data-i18n="langsTitle">Языки</h3>
+            <div class="space-y-3 relative z-10">
+                <div class="flex justify-between items-center border-b border-slate-100 dark:border-white/10 pb-2">
+                    <span data-i18n="langRu">Русский</span>
+                    <span class="text-xs font-semibold bg-slate-100 dark:bg-white/20 text-slate-600 dark:text-white px-2 py-0.5 rounded">Native</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span data-i18n="langEn">Английский</span>
+                    <span class="text-xs font-semibold bg-slate-100 dark:bg-white/20 text-slate-600 dark:text-white px-2 py-0.5 rounded">B2</span>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bento-card md:col-span-3 bg-white dark:bg-slate-800 rounded-3xl p-6 md:p-8 border border-slate-200 dark:border-slate-700/60 shadow-soft">
+            <div class="flex items-center gap-3 mb-8">
+                <div
+                    class="p-2.5 bg-primary-50 dark:bg-primary-900/30 rounded-xl text-primary-600 dark:text-primary-300">
+                    <i data-lucide="briefcase" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white" data-i18n="expTitle">Опыт работы</h3>
+            </div>
+
+            <div class="space-y-10 relative">
+
+                <div class="absolute left-[7px] top-3 bottom-3 w-0.5 bg-slate-200 dark:bg-slate-700 hidden md:block">
+                </div>
+
+                <div class="relative md:pl-10">
+                    <div
+                        class="absolute left-0 top-2 w-4 h-4 rounded-full border-4 border-white dark:border-slate-800 bg-primary-500 shadow-sm hidden md:block z-10">
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="insonTitle">
+                            <a href="https://insuranceon.uz/" target="_blank"
+                                class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Страховая
+                                компания INSON</a>
+                        </h4>
+                        <span
+                            class="text-sm text-primary-600 dark:text-primary-300 font-semibold bg-primary-50 dark:bg-primary-900/20 px-3 py-1 rounded-full mt-1 sm:mt-0 w-fit"
+                            data-i18n="dateInson">Окт 2024 — Наст. время</span>
+                    </div>
+                    <div
+                        class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium flex flex-wrap gap-2 items-center">
+                        <span class="font-bold text-primary-600 dark:text-primary-300">Team Lead (с 2025)</span>
+                        <span class="text-slate-300 dark:text-slate-600">•</span>
+                        <span>Fullstack Developer (React/Next)</span>
+                    </div>
+
+                    <p class="text-slate-600 dark:text-slate-300 mb-3 italic" data-i18n="insonIntro">Здесь я отвечаю за
+                        то, чтобы страховые продукты были доступны для оформления онлайн, а внутренние сервисы работали
+                        без сбоев.</p>
+
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="insonTL"><strong>Team Lead:</strong> Управление командой, код-ревью,
+                                принятие архитектурных решений, менторство junior-разработчиков.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="inson1"><strong>Базы данных (Oracle):</strong> Самостоятельно проектирую
+                                архитектуру БД. Пишу сложные хранимые процедуры, функции и триггеры.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="inson2"><strong>Backend (Node.js & Java):</strong> Поддержка микросервисов.
+                                Взаимодействую с Java (Spring) бэкендом.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="insonFrontend"><strong>Frontend (React.js & Next.js):</strong> Поддержка и разработка веб приложений и интерфейсов.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="inson3"><strong>Интеграции:</strong> MyGov, Road24, Банки, CLICK,
+                                Битрикс24, Билайн.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="relative md:pl-10">
+                    <div
+                        class="absolute left-0 top-2 w-4 h-4 rounded-full border-4 border-white dark:border-slate-800 bg-slate-300 dark:bg-slate-600 hidden md:block z-10">
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="crowchTitle">
+                            <a href="https://crowch.com/" target="_blank"
+                                class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Crowch</a>
+                        </h4>
+                        <span
+                            class="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 px-3 py-1 rounded-full mt-1 sm:mt-0 w-fit"
+                            data-i18n="dateCrowch">Окт 2024 — Сен 2025</span>
+                    </div>
+                    <div class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium">Frontend Developer
+                        (Project) | Nuxt.js</div>
+
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="crowch1">Много анимаций, графиков (Chart.js/D3), упор на SEO и оптимизацию
+                                перформанса.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="crowch2">Запустил PWA на Nuxt.js + Pinia с нуля до продакшна.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="crowch3">Реализовал сложную логику взаимодействия юзера с интерфейсом (личный кабинет, создание опросников, тестов, постов и т.д).</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="relative md:pl-10">
+                    <div
+                        class="absolute left-0 top-2 w-4 h-4 rounded-full border-4 border-white dark:border-slate-800 bg-slate-300 dark:bg-slate-600 hidden md:block z-10">
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white" data-i18n="alexTitle">
+                            <a href="https://alex-software.uz/ru/" target="_blank"
+                                class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">ALEX
+                                IT</a>
+                        </h4>
+                        <span
+                            class="text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 px-3 py-1 rounded-full mt-1 sm:mt-0 w-fit"
+                            data-i18n="dateAlex">Май 2022 — Дек 2024</span>
+                    </div>
+                    <div class="text-sm text-slate-500 dark:text-slate-400 mb-4 font-medium">Frontend Developer | Vue.js
+                        / React</div>
+
+                    <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="alex1">Поддержка и создание высоконагруженных проектов на Vue.js и React.</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="alex2">Миграция с Gulp на Vite (для многостраничных сайтов под WP).</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></span>
+                            <span data-i18n="alex3">Создание универсальной библиотеки UI-компонентов.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="bento-card md:col-span-1 bg-white dark:bg-slate-800 rounded-3xl p-6 flex flex-col border border-slate-200 dark:border-slate-700/60 shadow-soft">
+            <h3 class="text-lg font-semibold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-slate-500"></i>
+                <span data-i18n="eduTitle">Образование и Курсы</span>
+            </h3>
+
+            <div class="space-y-4">
+                <div>
+                    <div
+                        class="text-[11px] font-bold text-primary-600 dark:text-primary-300 uppercase tracking-wider mb-1">
+                        Start</div>
+                    <div class="font-medium text-slate-900 dark:text-white text-sm">HTML Academy</div>
+                    <div class="text-xs text-slate-500" data-i18n="courseHTML">Профессиональный Frontend-разработчик
+                    </div>
+                </div>
+
+                <div>
+                    <div
+                        class="text-[11px] font-bold text-primary-600 dark:text-primary-300 uppercase tracking-wider mb-1">
+                        2022-2023</div>
+                    <div class="font-medium text-slate-900 dark:text-white text-sm">EPAM Systems</div>
+                    <div class="text-xs text-slate-500" data-i18n="courseEPAM">The Rolling Scopes School (JS / React /
+                        Node.js)</div>
+                </div>
+
+            </div>
+
+            <div class="mt-auto pt-4 border-t border-slate-100 dark:border-slate-700">
+                <p class="text-xs text-slate-400 italic" data-i18n="motto">"В работе ценю честность, открытость, рост и отсутствие бюрократии"</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        const translations = {
+            ru: {
+                name: "Наумов Никита Сергеевич",
+                role: "Team Lead / Fullstack Developer",
+                location: "Ташкент (Готов к релокации)",
+                expLabel: "4 года опыта",
+                aboutTitle: "Обо мне",
+                summary: "Разработчик, который превращает сложные бизнес-процессы в удобные интерфейсы. Вырос из Frontend в уверенного Team Lead / Fullstack. Отвечаю за то, чтобы страховые продукты были доступны для оформления онлайн, а также развиваю внутренние сервисы компании. Могу не только сделать красивый интерфейс, но и спроектировать архитектуру энтерпрайз-уровня.",
+                contactsTitle: "Контакты",
+                stackTitle: "Стек технологий",
+                langsTitle: "Языки",
+                langRu: "Русский",
+                langEn: "Английский",
+                expTitle: "Опыт работы",
+
+          
+                insonTitle: '<a href="https://insuranceon.uz/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Страховая компания INSON</a>',
+                dateInson: "Окт 2024 — Наст. время",
+                insonIntro: "Здесь я отвечаю за то, чтобы страховые продукты были доступны для оформления онлайн, а внутренние сервисы работали без сбоев.",
+                insonTL: "<strong>Team Lead:</strong> Управление командой, код-ревью, принятие архитектурных решений, менторство junior-разработчиков.",
+                inson1: "<strong>Базы данных (Oracle):</strong> Самостоятельно проектирую архитектуру БД. Пишу сложные хранимые процедуры, функции и триггеры.",
+                inson2: "<strong>Backend (Node.js & Java):</strong> Поддержка микросервисов. Взаимодействую с Java (Spring) бэкендом.",
+                insonFrontend: "<strong>Frontend (React.js & Next.js):</strong> Поддержка и разработка веб приложений и интерфейсов.",
+                inson3: "<strong>Интеграции:</strong> MyGov, Road24, Банки, CLICK, Битрикс24, Билайн.",
+
+            
+                crowchTitle: '<a href="https://crowch.com/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Crowch</a>',
+                dateCrowch: "Окт 2024 — Сен 2025",
+                crowch1: "Много анимаций, графиков (Chart.js/D3), упор на SEO и оптимизацию перформанса.",
+                crowch2: "Запустил PWA на Nuxt.js + Pinia с нуля до продакшна.",
+                crowch3: "Реализовал сложную логику взаимодействия юзера с интерфейсом (личный кабинет, создание опросников, тестов, постов и т.д).",
+
+           
+                alexTitle: '<a href="https://alex-software.uz/ru/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">ALEX IT</a>',
+                dateAlex: "Май 2022 — Дек 2024",
+                alex1: "Поддержка и создание высоконагруженных проектов на Vue.js и React.",
+                alex2: "Миграция с Gulp на Vite (для многостраничных сайтов под WP).",
+                alex3: "Создание универсальной библиотеки UI-компонентов.",
+
+                eduTitle: "Образование и Курсы",
+                courseHTML: "Профессия Frontend-разработчик",
+                courseEPAM: "The Rolling Scopes School (JS / React / Node.js)",
+                eduLevel: "Среднее образование",
+                motto: "\"В работе ценю честность, открытость, рост и отсутствие бюрократии\"",
+                downloadPdf: "Скачать PDF"
+            },
+            en: {
+                name: "Nikita Sergeevich Naumov",
+                role: "Team Lead / Fullstack Developer",
+                location: "Tashkent (Ready to relocate)",
+                expLabel: "4 years experience",
+                aboutTitle: "About Me",
+                summary: "A developer who turns complex business processes into user-friendly interfaces. Evolved from Frontend to a confident Team Lead / Fullstack. I ensure insurance products are available for online processing and develop internal company services. I can not only create beautiful interfaces but also design enterprise-level architecture.",
+                contactsTitle: "Contacts",
+                stackTitle: "Tech Stack",
+                langsTitle: "Languages",
+                langRu: "Russian",
+                langEn: "English",
+                expTitle: "Experience",
+
+                insonTitle: '<a href="https://insuranceon.uz/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">INSON Insurance Company</a>',
+                dateInson: "Oct 2024 — Present",
+                insonIntro: "Here I ensure insurance products are available for online processing and internal systems operate without failures.",
+                insonTL: "<strong>Team Lead:</strong> Team management, code review, architectural decisions, mentoring junior developers.",
+                inson1: "<strong>Databases (Oracle):</strong> Independently design DB architecture. Write complex stored procedures, functions, and triggers.",
+                inson2: "<strong>Backend (Node.js & Java):</strong> Microservices support. Interaction with Java (Spring) backend.",
+                insonFrontend: "<strong>Frontend (React.js & Next.js):</strong> Support and development of web applications and interfaces.",
+                inson3: "<strong>Integrations:</strong> MyGov, Road24, Banks, CLICK, Bitrix24, Beeline.",
+
+                crowchTitle: '<a href="https://crowch.com/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Crowch</a>',
+                dateCrowch: "Oct 2024 — Sep 2025",
+                crowch1: "Many animations, charts (Chart.js/D3), focus on SEO and performance optimization.",
+                crowch2: "Launched PWA on Nuxt.js + Pinia from scratch to production.",
+                crowch3: "Implemented complex user interface interaction logic (personal cabinet, creation of questionnaires, tests, posts, etc.).",
+
+                alexTitle: '<a href="https://alex-software.uz/ru/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">ALEX IT</a>',
+                dateAlex: "May 2022 — Dec 2024",
+                alex1: "Maintenance and creation of high-load projects on Vue.js and React.",
+                alex2: "Migration from Gulp to Vite (for multi-page WP sites).",
+                alex3: "Created a universal UI component library.",
+
+                eduTitle: "Education & Courses",
+                courseHTML: "Frontend Developer Profession",
+                courseEPAM: "The Rolling Scopes School (JS / React / Node.js)",
+                eduLevel: "Secondary Education",
+                motto: "\"I value honesty, openness, growth, and lack of bureaucracy in work\"",
+                downloadPdf: "Download PDF"
+            },
+            uz: {
+                name: "Naumov Nikita Sergeyevich",
+                role: "Jamoa Rahbari / Fullstack Dasturchi",
+                location: "Toshkent (Ko'chib o'tishga tayyor)",
+                expLabel: "4 yillik tajriba",
+                aboutTitle: "Men haqimda",
+                summary: "Murakkab biznes jarayonlarini qulay interfeyslarga aylantiradigan dasturchi. Frontend dan ishonchli Team Lead / Fullstack darajasiga o'sdim. Sug'urta mahsulotlarini onlayn rasmiylashtirish imkoniyatini ta'minlayman va kompaniyaning ichki servislarini rivojlantiraman. Men nafaqat chiroyli interfeys yaratishim, balki enterprise darajasidagi arxitekturani loyihalashtirishim mumkin.",
+                contactsTitle: "Aloqa",
+                stackTitle: "Texnologiyalar",
+                langsTitle: "Tillar",
+                langRu: "Rus tili",
+                langEn: "Ingliz tili",
+                expTitle: "Ish tajribasi",
+
+                insonTitle: '<a href="https://insuranceon.uz/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">INSON sug\'urta kompaniyasi</a>',
+                dateInson: "Okt 2024 — Hozirgi vaqt",
+                insonIntro: "Bu yerda men sug'urta mahsulotlarining onlayn rasmiylashtirish uchun mavjudligini va ichki tizimlarning uzluksiz ishlashini ta'minlayman.",
+                insonTL: "<strong>Jamoa Rahbari:</strong> Jamoani boshqarish, kodni tekshirish (Code Review), arxitektura bo'yicha qarorlar qabul qilish, kichik dasturchilarga mentorlik qilish.",
+                inson1: "<strong>Ma'lumotlar bazasi (Oracle):</strong> MB arxitekturasini mustaqil loyihalashtiraman. Murakkab protseduralar va triggerlar yozaman.",
+                inson2: "<strong>Backend (Node.js & Java):</strong> Mikroservislarni qo'llab-quvvatlash. Java (Spring) backend bilan ishlash.",
+                insonFrontend: "<strong>Frontend (React.js & Next.js):</strong> Veb-ilovalar va interfeyslarni qo'llab-quvvatlash va ishlab chiqish.",
+                inson3: "<strong>Integratsiyalar:</strong> MyGov, Road24, Banklar, CLICK, Bitrix24, Beeline.",
+
+                crowchTitle: '<a href="https://crowch.com/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">Crowch</a>',
+                dateCrowch: "Okt 2024 — Sen 2025",
+                crowch1: "Ko'plab animatsiyalar, grafiklar (Chart.js/D3), SEO va ishlash tezligini optimallashtirishga e'tibor.",
+                crowch2: "Nuxt.js + Pinia da PWA ni noldan prodakshngacha ishga tushirdim.",
+                crowch3: "Foydalanuvchining interfeys bilan o'zaro hamkorligining murakkab mantiqini amalga oshirdim (shaxsiy kabinet, so'rovnomalar, testlar, postlar yaratish va h.k).",
+
+                alexTitle: '<a href="https://alex-software.uz/ru/" target="_blank" class="hover:text-primary-500 transition-colors underline decoration-dotted underline-offset-4">ALEX IT</a>',
+                dateAlex: "May 2022 — Dek 2024",
+                alex1: "Vue.js va React da yuqori yuklamali loyihalarni qo'llab-quvvatlash va yaratish.",
+                alex2: "Gulp dan Vite ga o'tish (WP uchun ko'p sahifali saytlar).",
+                alex3: "UI komponentlarining universal kutubxonasini yaratdim.",
+
+                eduTitle: "Ta'lim va Kurslar",
+                courseHTML: "Frontend Dasturchi Kasbi",
+                courseEPAM: "The Rolling Scopes School (JS / React / Node.js)",
+                eduLevel: "O'rta ma'lumot",
+                motto: "\"Ishda halollik, ochiqlik, o'sish va byurokratiyaning yo'qligini qadrlayman\"",
+                downloadPdf: "PDF yuklab olish"
+            }
+        };
+
+        let currentLang = 'ru';
+
+        function toggleLangMenu() {
+            const menu = document.getElementById('lang-menu');
+            const arrow = document.getElementById('lang-arrow');
+
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('flex');
+                arrow.style.transform = 'rotate(180deg)';
+                updateLangDots(currentLang);
+            } else {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        window.onclick = function (event) {
+            if (!event.target.closest('.relative')) {
+                const menu = document.getElementById('lang-menu');
+                const arrow = document.getElementById('lang-arrow');
+                if (menu && !menu.classList.contains('hidden')) {
+                    menu.classList.add('hidden');
+                    menu.classList.remove('flex');
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.getElementById('lang-label').innerText = lang.toUpperCase();
+
+            toggleLangMenu();
+
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+        }
+
+        function updateLangDots(lang) {
+            ['ru', 'en', 'uz'].forEach(l => {
+                document.getElementById(`dot-${l}`).style.opacity = (l === lang) ? '1' : '0';
+
+                document.getElementById(`dot-${l}`).classList.toggle('bg-primary-500', l === lang);
+                document.getElementById(`dot-${l}`).classList.toggle('bg-slate-300', l !== lang);
+            });
+        }
+
+        function handlePrint() {
+            const wasDark = document.documentElement.classList.contains('dark');
+
+            if (wasDark) {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('theme-icon').setAttribute('data-lucide', 'moon');
+                lucide.createIcons();
+            }
+
+            setTimeout(() => {
+                window.print();
+
+                if (wasDark) {
+                    document.documentElement.classList.add('dark');
+                    document.getElementById('theme-icon').setAttribute('data-lucide', 'sun');
+                    lucide.createIcons();
+                }
+            }, 50);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            const icon = document.getElementById('theme-icon');
+
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+                icon.setAttribute('data-lucide', 'moon');
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+                icon.setAttribute('data-lucide', 'sun');
+            }
+            lucide.createIcons();
+        }
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('theme-icon').setAttribute('data-lucide', 'sun');
+            lucide.createIcons();
+        }
+
+        updateLangDots('ru');
+    </script>
+</body>
+
+</html>
